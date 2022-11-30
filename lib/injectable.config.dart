@@ -6,6 +6,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:firebase_auth/firebase_auth.dart' as _i5;
+import 'package:flutter_login_bloc/blocs/authentication/authentication_bloc.dart'
+    as _i7;
 import 'package:flutter_login_bloc/repository/authenticacion_repository_impl.dart'
     as _i4;
 import 'package:flutter_login_bloc/repository/authentication_repository.dart'
@@ -31,5 +33,7 @@ _i1.GetIt init(
         gh<_i5.FirebaseAuth>(),
         gh<_i6.GoogleSignIn>(),
       ));
+  gh.singleton<_i7.AuthenticationBloc>(
+      _i7.AuthenticationBloc(gh<_i3.IAuthenticationRepository>()));
   return getIt;
 }
