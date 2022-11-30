@@ -14,3 +14,26 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+comandos importantes
+
+- para generar la inyeccion de dependencias
+seguir la siguiente doc: https://www.sandromaglione.com/techblog/how_to_implement_dependecy_injection_in_flutter
+
+crear archivo injectable.dart
+
+final getIt = GetIt.instance;
+
+@InjectableInit(
+  initializerName: 'init', // default
+  preferRelativeImports: true, // default
+  asExtension: false, // default
+)
+void configureDependencies() => init(getIt);
+
+commando:
+
+flutter packages pub run build_runner build
+
+
