@@ -6,12 +6,13 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: IAuthenticationRepository)
 class AuthenticationRepository extends IAuthenticationRepository {
-  final FirebaseAuth _firebaseAuth;
-  final GoogleSignIn _googleSignIn;
+  late final FirebaseAuth _firebaseAuth;
+  late final GoogleSignIn _googleSignIn;
 
-  AuthenticationRepository(FirebaseAuth firebaseAuth, GoogleSignIn googleSignIn)
-      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
-        _googleSignIn = googleSignIn ?? GoogleSignIn.standard();
+  AuthenticationRepository() {
+    _firebaseAuth = FirebaseAuth.instance;
+    _googleSignIn = GoogleSignIn.standard();
+  }
 
   @override
   Future<void> logInWithEmailAndPassword(

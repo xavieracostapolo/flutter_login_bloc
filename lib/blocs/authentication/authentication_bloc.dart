@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_login_bloc/models/user.dart';
 import 'package:flutter_login_bloc/repository/authentication_repository.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';
@@ -14,6 +15,8 @@ class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   final IAuthenticationRepository _authenticationRepository;
 
+  final _logger = Logger();
+
   AuthenticationBloc(this._authenticationRepository)
       : super(const AuthenticationState()) {
     on<AuthenticationUserChanged>(_onAuthenticationUserChanged);
@@ -22,6 +25,8 @@ class AuthenticationBloc
 
   FutureOr<void> _onAuthenticationUserChanged(
       AuthenticationUserChanged event, Emitter<AuthenticationState> emit) async{
+        _logger.i('hi');
+        await _authenticationRepository.logInWithGoogle();
         emit(state.copyWith(user: event.user));
       }
 
